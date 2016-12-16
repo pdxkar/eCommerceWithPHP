@@ -1,0 +1,10 @@
+#.test. ---this file doesn't seem to be doing anything
+# Disable directory browsing:
+Options All -Indexes  
+# Prevent folder listing:
+IndexIgnore *  
+# Prevent access to any file:
+<FilesMatch "^.*$">
+Order Allow,Deny  
+Deny from all 
+</FilesMatch>

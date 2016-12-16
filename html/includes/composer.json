@@ -1,0 +1,18 @@
+{
+	"repositories": [
+    {
+        "type": "composer",
+        "url": "https://packages.zendframework.com/"
+    },
+    {  "type": "vcs",
+        "url": "https://github.com/goetas/serializer.git"
+    }
+	],
+
+	"require": 
+	{
+		"zendframework/zend-mail": "2.0.*",
+		"authorizenet/authorizenet": "1.9.0",
+		"jms/serializer": "dev-serializer-master as 1.0"
+	}
+}

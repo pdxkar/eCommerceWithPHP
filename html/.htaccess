@@ -1,0 +1,45 @@
+<IfModule mod_rewrite.c>
+Options -MultiViews
+RewriteEngine on
+#RewriteBase /ex2/
+#RewriteBase /effortlessECommerce/effortless_ecommerce_2nd/ex2/html/
+
+#test that mod_rewrite is working
+#if RewriteBase is commented out, http://localhost:8888/effortlessECommerce/effortless_ecommerce_2nd/ex2/html/testing yields the test page
+#if RewriteBase is uncommented, http://localhost:8888/effortlessECommerce/effortless_ecommerce_2nd/ex2/html/testing yields error: The requested URL /ex2/testHtaccessPage.php was not found on this server.
+RewriteRule ^testing/?$ testHtaccessPage.php
+
+# For the primary categories:
+#might need a trailing front slash
+RewriteRule ^shop/(coffee|goodies)?$ shop.php?type=$1
+
+# For sales:
+RewriteRule ^shop/sales/?$ sales.php
+
+# For specific products:
+#RewriteRule ^browse/(coffee|goodies)/([A-Za-z\+\-]+)/([0-9]+)/?$ browse.php?type=$1&category=$2&id=$3
+RewriteRule ^browse/(coffee|goodies)/([A-Za-z\+\-]+)/([0-9]+)/?$ browse.php?type=$1&category=$2&id=$3
+
+# For HTTPS pages:
+#the line below checks for the condition where https is off, %{something} refers to a server environmental variable
+#this means turn https on only for the links for checkout, billing, final, and admin
+RewriteCond %{HTTPS} off
+#The requested URL /checkout.php was not found on this server:
+#RewriteRule ^(checkout\.php|billing\.php|final\.php|admin/(.*))$ https://%{HTTP_HOST}/$1 [R=301,L]
+RewriteRule ^(checkout\.php|billing\.php|final\.php|admin/(.*))$ https://%{localhost/effortlessECommerce/effortless_ecommerce_2nd/ex2/html}/$1 [R=301,L]
+#RewriteRule ^(checkout\.php)?$ testHtaccessPage.php
+
+</IfModule>
+
+#<IfModule mod_rewrite.c>
+#RewriteEngine on
+# For sales:
+#RewriteRule ^shop/sales/?$ sales.php
+# For the primary categories:
+#RewriteRule ^shop/([A-Za-z\+]+)/?$ shop.php?type=$1
+# For specific products:
+#RewriteRule ^browse/([A-Za-z\+\-]+)/([A-Za-z\+\-]+)/([0-9]+)$ browse.php?type=$1&category=$2&id=$3
+# For HTTPS pages:
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(checkout\.php|billing\.php|final\.php|admin/(.*))$ https://%{HTTP_HOST}/$1 [R=301,L]
+#</IfModule>

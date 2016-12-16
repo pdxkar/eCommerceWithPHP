@@ -1,0 +1,23 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+*.log
+*.log.*
+*StringLocalizationAssertionResults.txt
+*en_android.octet-stream
+*en_android.unknown
+
+# Maven
+log/
+target/
+
+*target*
+*.war
+*.ear
+*.class
